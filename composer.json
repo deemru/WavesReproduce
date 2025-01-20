@@ -1,0 +1,29 @@
+{
+    "name": "deemru/wavesreproduce",
+    "description": "Waves Reproduce framework",
+    "keywords": [ "wavesplatform" ],
+    "homepage": "http://github.com/deemru/WavesReproduce",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitrii Pichulin",
+            "email": "deem@deem.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "deemru\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@php test/selftest.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.4",
+        "deemru/waveskit": "^1.0",
+        "deemru/triples": "^1.0"
+    }
+}
