@@ -149,9 +149,11 @@ class WavesReproduce
         return $txsinfo;
     }
 
-    function txs( $from )
+    function txs( $from, $index )
     {
-        $from = $this->txkey( $from, 0 );
+        if( $from < 1 )
+            $from = 1;
+        $from = $this->txkey( $from, $index );
         $txs = [];
         foreach( $this->addresses as $address )
         {
@@ -472,9 +474,9 @@ class WavesReproduce
             }
     }
 
-    function reproduce( $functions, $from = 1 )
+    function reproduce( $functions, $from = 1, $index = 0 )
     {
-        $qs = $this->txs( $from );
+        $qs = $this->txs( $from, $index );
         $qpos = [];
         $qtx = [];
         $n = count( $qs );
@@ -530,6 +532,8 @@ class WavesReproduce
             if( $tx['applicationStatus'] !== 'succeeded' )
                 continue;
 
+            unset( $tx['x'] );
+            $tx['index'] = $cpos & 0xFFFFFFFF;
             $this->tx = $tx;
 
             $type = $tx['type'];
